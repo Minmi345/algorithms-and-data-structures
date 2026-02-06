@@ -1,0 +1,463 @@
+\documentclass{article}
+\title{
+    \LARGE Analysis report\\[0.2em]
+    %\Large Pineapple Planner
+}
+\author{Varvara Aladyina}
+\date{November 2025}
+
+\usepackage{graphicx}
+\graphicspath{{images/}}
+
+\usepackage{booktabs}
+
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[style=ieee]{biblatex}
+\addbibresource{references/references.bib}
+\usepackage{csquotes}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{booktabs} % For better lines in tables
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,
+    urlcolor=blue,
+}
+\usepackage{listings}
+\usepackage{multirow, makecell}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{caption}
+\usepackage{calculator}
+\usepackage{calculus}
+\usepackage{adjustbox}
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    left=30mm,
+    right=30mm,
+    top=25mm,
+    bottom=30mm,
+    headheight={90pt},
+}
+\usepackage[shortlabels]{enumitem}
+
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{booktabs}
+
+\addto\captionsenglish{\renewcommand{\listfigurename}{Plots}}
+\addto\captionsenglish{\renewcommand{\listtablename}{Tables}}
+
+\begin{document}
+\begin{figure}[ht!]
+    \minipage{0.76\textwidth}
+    \includegraphics[width=7cm]{images/hkr.png}
+    \label{title}
+    \endminipage
+    \minipage{0.32\textwidth}
+    \endminipage
+\end{figure}
+
+\vspace{0.8cm}
+\large
+
+\textbf{{\let\newpage\relax\maketitle}}
+
+\begin{center}
+    \vfill
+    \small{Kristianstad University | SE-291 88 Kristianstad | +46 44 250 30 00 | www.hkr.se}
+\end{center}
+
+\thispagestyle{empty}
+
+\newpage
+
+\makeatletter
+\renewcommand{\abstractname}{\vspace{-\baselineskip}}
+\begin{abstract}
+    \large
+    \noindent\textbf{Title}\\
+    Analysis project for sustainable development\\[1em]
+    \textbf{Programme}\\
+    Software Development\\[1em]
+    \textbf{Author}\\
+    Varvara Aladyina\\[1em]
+    % Abstract\\[1em]
+    \textbf{Abstract}\\
+    prioritizes testability.\\[1em]
+    \textbf{Keywords}\\
+    TDD, Test Driven Development, Unit testing, functional paradigm, FP, Cohesion, Technical debt, Sustainable Development\\[1em]
+    
+\end{abstract}
+\makeatother
+
+\newpage
+
+\tableofcontents
+\thispagestyle{empty}
+
+\newpage
+\section{Actual algos}
+Hello :)
+this is algos!
+
+\newpage
+
+
+\section{Introduction}
+\label{Introduction}
+%The introduction provides the reader with the reasons for this report and put the report into context. Explain for the reader, the questions that this report tries to cover.
+
+
+
+The definition of ”good code” is often debated. Every line of code represents a cost of something, whether it's money or time for proper maintenance and readability. According to Loup Vaillant \cite{vaillant_2015_what} good code is characterized by:
+\begin{itemize}
+    \item Possibility of writing code as little as possible (less lines of code means less reading and less time spent maintaining)
+    \item Code doesn't have many bugs
+    \item Code shouldn't use many resources
+    \item Code should not perform slow
+\end{itemize}
+
+To write a good code programmer should have spent as minimum time as possible on prerequisite knowledge (with what program will do, libraries, frameworks, etc.), knowledge of existing code and what it does, and coordination (working efficiently in team).
+
+This report reflects on a group software development project designed to explore these concepts practically. The project aimed to create a dice game using Object-Oriented Programming (OOP) in Python, using Test Driven Development, unit testing and conventional styles.
+
+This paper covers my experience of doing group project. 
+The objectives of this paper are:
+\begin{itemize}
+    \item Test Driven Development in theory and practise.
+    \item Impact of Functional Paradigm on Unit Testing.
+    \item Assess code sustainability using cohesion, cyclomatic complexity and maintability index.
+\end{itemize}
+
+\section{Methodology}
+%The method part describes how the study was done, on what bases and what type of data was collected and how it was analysed.
+%We are trying to look alike a short academic report and in that context a method is of high value. It shows what kind of study we did, what data we collected and how we went on with analysing it.
+%Our "method" could roughly be defined as follows.
+The report based both on analytical and practical methods.
+
+
+
+\subsection{Analytical methods}
+Before and after assignment, literature review was made on functional programming paradigms, unit testing strategies, and sustainable software principles. This theoretical framework provides the baseline for evaluating the team’s performance.
+
+\subsection{Practical methods}
+Data was harvested from the group project repository hosted on GitHub. The following tools were used to generate objective quality metrics:
+\begin{itemize}
+    \item Coverage.py \cite{a2025_coveragepy} measured the extent to which unit tests covered project.
+    \item Radon measured Cyclomatic Complexity (CC) and Maintainability Index (MI), which are the keys for clean and sustainable code. CC is useful metrics to understand how complex is the code and MI measures how easy is it to maintain the code. MI includes different metrics, such as CC and Halstead volume that will be in this paper.
+\end{itemize}
+
+
+\newpage
+
+\section{Result}
+Folowing data shows objectively quality of the codebase of the project.
+\subsection{Coverage.py}
+This is how coverage.py rated project of my group team:
+\begin{verbatim}
+tests\test_dice.py .......                                [  9%]
+tests\test_game.py ....................                   [ 37%]
+tests\test_high_score.py .......                          [ 47%]
+tests\test_menu.py ..............                         [ 66%]
+tests\test_player.py ........................             [100%]
+\end{verbatim}
+
+\begin{verbatim}
+Name                    Stmts   Miss Branch BrPart  Cover   Missing
+-------------------------------------------------------------------
+program\__init__.py         0      0      0      0   100%
+program\computer.py       137    120     60      0     9%   27-32,36-37,41,45,
+                                                            54-68,81-107,117-145,
+                                                            154-168,181-198, 
+                                                            209-231, 234, 237
+program\dice.py            13      0      4      0   100%
+program\dice_hand.py       26     19     10      0    19%   9-11,19-21,29-33,40-43,
+                                                            50-53,61
+program\game.py            59     31     24      2    43%   45-78, 81-83, 86-87,
+                                                            97->exit, 152-154
+program\high_score.py      20      1      6      1    92%   49
+program\menu.py            96     43     32      6    54%   75,93->114,97-98,
+                                                            103-104,109-110,
+                                                            131-137,160,168,
+                                                            178-190,199-212,
+                                                            233,246,254,
+                                                            257-276,280-283
+program\player.py          54     26     14      0    47%   47-68, 71-79, 113
+-------------------------------------------------------------------
+TOTAL                     405    240    150      9    36%
+\end{verbatim}
+
+The coverage.py analysis revealed significant gaps in testing. The total project coverage was recorded at 36\%, which is extremely low for a sustainable project.It highlights that program/computer.py, the most complex logic handler, had the
+lowest coverage (9\%).
+
+\subsection{Maintainability index}
+This information shows maintability of the project calculating with cyclomatic complexity:
+
+\begin{verbatim}
+radon mi --show program
+program\computer.py - A (53.72)
+program\dice.py - A (83.67)
+program\dice_hand.py - A (82.73)
+program\game.py - A (68.38)
+program\high_score.py - A (81.58)
+program\menu.py - A (64.62)
+program\player.py - A (69.96)
+program\__init__.py - A (100.00)\end{verbatim}
+
+The Radon analysis for Maintainability Index classified all files as 'A' grade, however the computer.py is still with lowest numbers bordering with 'B' grade.
+
+\begin{itemize}
+    \item \texttt{program/dice.py}: 83.67 (High maintainability)
+    \item \texttt{program/high\_score.py}: 81.58
+    \item \texttt{program/computer.py}: 53.72 (Lowest score, bordering on 'B')
+\end{itemize}
+
+\subsection{Halstead Metrics}
+
+\begin{longtable}{|l|c|c|c|c|c|c|c|c|c|c|}
+    \caption{Halstead Metrics for Program Modules}                                                                 \\
+    \toprule
+    \textbf{File}                         & h1 & h2 & N1 & N2 & Voc. & Len. & Calc.Len. & Volume & Diff. & Effort  \\
+    \midrule
+    \endfirsthead
+    \toprule
+    \textbf{File}                         & h1 & h2 & N1 & N2 & Voc. & Len. & Calc.Len. & Volume & Diff. & Effort  \\
+    \midrule
+    \endhead
+    \midrule
+    \multicolumn{11}{r}{\textit{Continued on next page}}                                                           \\
+    \bottomrule
+    \endfoot
+    \bottomrule
+    \endlastfoot
+    
+    program\textbackslash computer.py     & 12 & 62 & 45 & 84 & 74   & 129  & 412.18    & 801.02 & 8.13  & 6511.51 \\
+    program\textbackslash dice.py         & 2  & 4  & 3  & 5  & 6    & 8    & 10.00     & 20.68  & 1.25  & 25.85   \\
+    program\textbackslash dice\_hand.py   & 2  & 7  & 4  & 7  & 9    & 11   & 21.65     & 34.87  & 1.00  & 34.87   \\
+    program\textbackslash game.py         & 5  & 12 & 8  & 14 & 17   & 22   & 54.63     & 89.92  & 2.92  & 262.28  \\
+    program\textbackslash high\_score.py  & 4  & 12 & 8  & 14 & 16   & 22   & 51.02     & 88.00  & 2.33  & 205.33  \\
+    program\textbackslash menu.py         & 6  & 17 & 12 & 20 & 23   & 32   & 85.00     & 144.75 & 3.53  & 510.90  \\
+    program\textbackslash player.py       & 5  & 18 & 11 & 22 & 23   & 33   & 86.67     & 149.28 & 3.06  & 456.13  \\
+    program\textbackslash \_\_init\_\_.py & 0  & 0  & 0  & 0  & 0    & 0    & 0.00      & 0.00   & 0.00  & 0.00    \\
+    
+\end{longtable}
+
+Where:
+\begin{itemize}
+    \item h1 stands for \textbf{Unique Operators} ($\eta_1$)
+    \item h2 stands for \textbf{Unique Operands} ($\eta_2$)
+    \item N1 stands for \textbf{Total Operators} ($N_1$, the total count of all operators used)
+    \item N2 stands for \textbf{Total Operands} ($N_2$, the total count of all operands used)
+    \item Voc. stands for \textbf{Vocabulary} ($\eta = \eta_1 + \eta_2$, the total number of unique operators and operands)
+    \item Len. stands for \textbf{Length} ($N = N_1 + N_2$, the total number of operator and operand occurrences)
+    \item Calc. Len. stands for \textbf{Calculated Length} ($\hat{N} = \eta_1 \log_2 \eta_1 + \eta_2 \log_2 \eta_2$, an estimated program length)
+    \item Volume stands for \textbf{Volume} ($V = N \log_2 \eta$, the minimum number of bits required to encode the program)
+    \item Diff. stands for \textbf{Difficulty} ($D = \frac{\eta_1}{2} \cdot \frac{N_2}{\eta_2}$, a measure of how hard it is to write or understand the program)
+    \item Effort stands for \textbf{Effort} ($E = V \times D$, the required mental effort to develop the software).
+\end{itemize}
+
+Halstead metrics showed that computer.py required the highest mental effort to develop and understand, with an Effort score significantly higher than other modules (Volume 801.02, Effort 6511.51).
+
+\subsection{Cohesion}
+
+\begin{table}[H]
+    \centering
+    \caption{Total Cohesion per Module/File}
+    \label{tab:module_cohesion}
+    \begin{tabular}{|l|c|}
+        \hline
+        \textbf{File Name}       & \textbf{Total Cohesion} \\ \hline
+        program/dice.py          & 0.0\%                   \\ \hline
+        program/player.py        & 33.33\%                 \\ \hline
+        program/menu.py          & 26.19\%                 \\ \hline
+        program/dice$\_$hand.py  & 66.67\%                 \\ \hline
+        program/high$\_$score.py & 33.33\%                 \\ \hline
+        program/game.py          & 55.0\%                  \\ \hline
+        program/computer.py      & 22.92\%                 \\ \hline
+    \end{tabular}
+\end{table}
+
+Table 2 shows us cohesion for each file. We can see here that the dice file has 0\%. The file has only static methods.Most of the code is graded extremelly low which means that Single Responsibility Principle was violated.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{|l | c|}
+        \hline
+        \textbf{Function}            & \textbf{Cohesion (\%)} \\
+        \hline
+        \texttt{\_\_init\_\_}        & 75.00\%                \\
+        select\_difficulty           & 25.00\%                \\
+        change\_computer\_name       & 12.50\%                \\
+        roll\_dice                   & 0.00\%                 \\
+        hold\_at\_twenty             & 12.50\%                \\
+        scoring\_turn                & 37.50\%                \\
+        keep\_or\_race               & 25.00\%                \\
+        take\_turn                   & 37.50\%                \\
+        check\_valid\_computer\_name & 12.50\%                \\
+        check\_valid\_difficulty     & 12.50\%                \\
+        get\_total\_score            & 12.50\%                \\
+        get\_username                & 12.50\%                \\
+        \hline
+        \textbf{Total Cohesion}      & \textbf{22.92\%}       \\
+        \hline
+    \end{tabular}
+    \caption{Cohesion metrics for \texttt{program\textbackslash computer.py} (Class: Computer)}
+\end{table}
+
+This table provides us more detailed information about cohesion in class computer and how it could be broken apart for more cohesive ways.  
+
+\newpage
+
+\section{Discussion}
+
+The results of the practical assignment, particularly the low code coverage and
+poor cohesion metrics (Section 3), provide a quantitative basis for reflecting on
+the efficacy of the chosen development methodologies and their impact on code
+sustainability.
+
+\subsection{Philosophies and Principles}
+Several philosophies and principles are relevant to the outcome, such as:
+
+\begin{itemize}
+    \item DRY(Don't Repeat Yourself) - reduce repetition of information that is likely to change replacing it with abstractions %https://en.wikipedia.org/wiki/Don%27t_repeat_yourself
+    \item KISS (Keep it simple stupid) - principle from U.S Navy that all choices should be extremelly simple.
+    \item YAGNI (You Ain't Gonna Need It) - way of programming, where things are implemented only when they are required % https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it
+          % https://en.wikipedia.org/wiki/KISS_principle
+\end{itemize}
+Reflecting personal experience, my approach was aligned closely to KISS: it's preferable to spend extra time to make code shorter and simplify logic. However based on results from Section 3, project work abandoned such principles that led to unnessecary complexity.
+
+
+\subsection{Test Driven Development and cost of the proccess flaw}
+At its core Test Driven Development is about writing tests before the code. Such cycle leads to writing as little code as possible to pass the tests which corresponds to philosophies such as YAGNI and KISS.
+
+\subsubsection{Team's approach to the assignment and how TDD wasn't implemented}
+Our team's plan on doing assignment can be described in such steps:
+\begin{enumerate}
+    \item Create UML and architecture
+    \item Assign each person a class.
+    \item Each person writes their code.
+    \item Person exchanges the code with other member and both of them unit test the other person's code.
+    \item After receiving tests and code back, member rewrites their code to pass written tests.
+    \item Integrate all classes altogether and then pass the assignment.
+\end{enumerate}
+
+Seeing the steps, TDD is not implemented only in half: we started with writing the actual program and not the tests. Team misinterpreted the task and TDD overall, so we wouldn't merge any of the branches until all of them are rightfully tested. This failed applying one of the TDD's leverages: design guidance. Such development of the product leaded for a late introducing of problems. As shown in the  \textbf{Table 6}, bugs that were discovered in post-release cost 10--25$\times$ more if they were taggled in early stages of development. The subsequent "sudden" realisation that "integration needs some time and changes in the code" was an alert of neglecting continuous integration.
+
+\begin{table}[h]
+    \centering
+    \caption{Cost to Fix a Defect Based on Time Introduced vs. Time Detected \cite{mcconnell_2004_code}}
+    \label{tab:defectcost_v3}
+    % Specification: |c|c|c|c|c|c|c| adds a vertical line before and after every column
+    \begin{adjustbox}{center}
+        \begin{tabular}{|c|c|c|c|c|c|c|}
+            \hline % Top horizontal line
+            \multirow{3}{*}{\shortstack{\textbf{Cost to fix}                                                                                                                                                                                     \\ \textbf{a defect}}} & \multicolumn{6}{c|}{\textbf{Time detected}} \\
+            \cline{2-7} % Horizontal line starting from column 2
+             &                       & \multirow{2}{*}{\textbf{Requirements}} & \multirow{2}{*}{\textbf{Architecture}} & \multirow{2}{*}{\textbf{Construction}} & \multirow{2}{*}{\textbf{System test}} & \multirow{2}{*}{\textbf{Post-release}} \\
+             &                       &                                        &                                        &                                        &                                       &                                        \\
+            \hline % Horizontal line separating header from body
+            \multirow{3}{*}{\shortstack{\textbf{Time}                                                                                                                                                                                            \\ \textbf{Introduced}}}
+             & \textbf{Requirements} & 1$\times$                              & 3$\times$                              & 5--10$\times$                          & 10$\times$                            & 10--100$\times$                        \\
+            \cline{2-7} % Horizontal line separating rows
+             & \textbf{Architecture} & --                                     & 1$\times$                              & 10$\times$                             & 15$\times$                            & 25--100$\times$                        \\
+            \cline{2-7} % Horizontal line separating rows
+             & \textbf{Construction} & --                                     & --                                     & 1$\times$                              & 10$\times$                            & 10--25$\times$                         \\
+            \hline % Bottom horizontal line
+        \end{tabular}
+    \end{adjustbox}
+\end{table}
+
+\subsection{Functional Programming}
+During this project it was discovered that procedural paradigm can cause issues during testing phase, therefore using functional paradigm showed more benefits.
+
+\subsubsection{Pure Functions in Unit Testing}
+One of the classes, high\_score.py had functional paradigm in it. Seeing the coverage in Section 3 we can see that only 1 line wasn't tested out of all program. It's one of the most tested files throughout the whole project. The coverage data
+(92\%) and high Maintainability Index (81.58) reflect the benefits of this approach
+
+As Functional Programming implements Pure functions, it has a great advantage in unit testing: no side effects in all functions which means same input has the same output all the time. It eliminates dependencies on mostly anything and additionally makes tests simple and very isolated which could be one of properties of clean coding.
+
+\subsubsection{Functional paradigm or conventional style}
+
+During writing the high\_score.py file I encountered into conflict between my vision of functions for unit testing and flake8 view. Specifically, I preferred to pass input variables directly into functions rather than relying on stored class variables. While linters promote conventional OOP encapsulation, in the context of unit testing, the functional preference (requiring explicit input for every function) maximizes testability and readability, aligning with the programming philosophy KISS (Keep It Simple, Stupid) by making dependencies explicit.
+%https://en.wikipedia.org/wiki/Pure_function
+%https://en.wikipedia.org/wiki/Deterministic_algorithm
+%https://en.wikipedia.org/wiki/Side_effect_(computer_science)
+
+
+\subsection{Technical debt}
+Deadline and wrong approach to the project led the team to a technical debt -- quick and simple resolving of the problem that worsened the quality of code and maintability of it. Due to such circumstances testing coverage got extremelly low as there wasn't that much time to retest everything. 
+
+%ABOUT Cohesion
+%didn't know, but after using it on our project i discovered, that our work wasn't that good at all. Even though i was responsible for writing the code for computer.py , but, first of all, team member's code didn't work at all with my test and, secondly, closer to submitting date, when we merged everything, this file was rewritten a lot. Additionaly, it had quite lots of complexity, and i was extremelly confused on how exactly i could tackle it with writing my tests..
+%ABOUT TDD
+%I had quite lots of fun writing tests. I tried all possible input values and break the code in very nasty way. Of course, when my teammate went to step 4 from the mentioned above algorithm, he wasn't happy at all. 
+
+%if we decide to compare my group team with such definition.. we didn't write the good code. We entered programming stage with as little knowledge as possible but on testing stage, when I needed to test someone else's code i was hesitating, because the complexity of the code and how confusing it was.
+
+
+
+
+%sustainable programming through good and clean code
+
+%Discussions are where we talk about the results and put them into context and try to understand what the results can or should mean.
+
+
+%Elaborate and write on the functional programming style. Do you think it has some properties that relate to good and clean code?
+
+%Elaborate and write on unittesting and explain your own view on that topic. What is unittesting, why do we do it. Is it hard, is it good, should one do it and does it relate to good code and if the answer is yes, then elaborate why may that be so?
+
+%Elaborate and write on test driven development (TDD) and your experience and learnings from the coding assignment. Is it hard/easy/good/bad? Define what you think are the optimal environment for start using TDD and in what way may it be benificial for your code.
+
+%Elaborate and write on your beliefs in documenting software. Is it needed, to what level is documentation needed and how should one do documentation to cover the aspects of good code.
+
+%Elaborate on the topic of good and clean code, try to explain what it is and how should one proceed in learning how to write good and clean code.
+
+%Elaborate and write on your thoughts on the importance of the programmers development environment and how important it might be, or not, for the programmers productivity in delivering good and clean code.
+
+%Use software philosophies/principles (learnt from lecture) and relate those to your group work for A02. What principles did you use and what principles do you think you should have discussed to use in the project?
+
+%Use static code analysis tools to measure your own project and the one you opposed on. Gather the metrics into the report and elaborate on how well the data is showing properties of good and clean code.
+
+%Elaborate and write on the topic "sustainable software development", in your own view, what are the essentials?
+
+
+\section{Summary}
+This paper analyzed the sustainability of a software project through the lens of TDD and functional programming. The key findings are:
+\begin{enumerate}
+    \item Methodology Matters: Partial adherence to TDD is insufficient. Writing unit tests before integration leads to drastical increases of problems in the code.
+    \item Quantitative Metrics reflect Quality: The low cohesion (22.92\%) and coverage (9\%) of the most complex module accurately predicted the difficulty the team faced in writing tests to it.
+    \item Functional Paradigm promotes Sustainability: The use of pure functions in \texttt{high\_score.py} resulted in higher maintainability and testability compared to the state-heavy OOP modules.
+\end{enumerate}
+Sustainable software development requires not just working code, but code that is modular, testable, and developed with a process that catches defects early.
+
+
+\section{Bibliography}
+\printbibliography[heading=none]
+
+% --- Appendix ---
+\newpage
+\appendix
+\section{Reflections on Polyglot Programming}
+\label{appendix:languages}
+During the research phase that were on Canvas, I found an article \cite{a2025_teach} that was debating about books such as "Teach C++ in 24 hours" and how they mislead people into thinking that they will actually know C++ by the end of the book. The core argument is that coding quality and understanding is coming from years of practise, not days. This resonates with the quote: "A language that doesn't affect the way you think about programming is not worth knowing."
+
+Reflecting on this, my mother said that in her university all task had requirement to write on different language. Additionaly, on current course when I had to chance to use Java, I decided to switch sides and write tasks in C/C++. That was a game changer and I incredibly enjoyed it, because I found lots of new information about manipulations with memory that i would have never knew if I used only high-level languages like python or java.
+
+For functional paradigm part of this course, I really badly wanted to write on different language that is based  on this paradigm. Unfortunately, my team didn't allow me to do that. Nevertheless, after spending few hours figuring out what is actually a functional paradigm in OOP Java, I got it. Maybe, it was easier to understand with Java. And functional paradigm changed my thoughts about programming overall. For second assignment I tried to code with same style, which was quite fun. And just because of that I discovered that functional paradigm is perfectly fitted with unit testing. Testing functions is way easier than testing code that has dependances on other functions.
+
+\section{Sustainable development}
+\label{appendix:sustainable}
+
+%https://www.joelonsoftware.com/2000/04/06/things-you-should-never-do-part-i/
+Another article \cite{spolsky_2000_things} that I found on Canvas really intrigued me while I was reading. I would say, this article exactly describes what I imagine sustainable development is mentioned. Article explains how throwing away the whole program just to rewrite it with more understandable way is a bad idea. It reminds me of my first task with functional paradigm: our team decided to refactor old assignment that we had from oop java course. We took my work, with which i was extremelly proud. We learned that sometimes, code is not just "messy," but fundamentally misaligned with new requirements. We encountered quite a few problems: first problem was that refacturing wasn't a gat idea for a tiny file with small classes that have 4 functions..
+
+Nevertheless it was good experience of refacturing code without throwing everything away. 
+
+\end{document}
