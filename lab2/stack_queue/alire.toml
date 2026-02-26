@@ -1,0 +1,11 @@
+name = "stack_queue"
+description = ""
+version = "0.1.0-dev"
+
+authors = ["Milly"]
+maintainers = ["Milly <example@example.com>"]
+licenses = "MIT OR Apache-2.0 WITH LLVM-exception"
+website = ""
+tags = []
+
+executables = ["stack_queue"]
