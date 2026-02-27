@@ -29,6 +29,9 @@ begin
    for I in 1 .. 14 loop
       Queue.Enqueue (I);
    end loop;
+   Queue.Dequeue;
+   Queue.Dequeue;
+   Queue.Dequeue;
 
 
 end Stack_Queue;

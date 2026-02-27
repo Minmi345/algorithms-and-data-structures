@@ -11,12 +11,20 @@ package body Queue is
 
       if not Is_Full then
 
-         tail := tail + 1;
+         if tail < Capacity then
+            tail := tail + 1;
+         else
+            tail := 1; --circular queue
+         end if;
+         Ada.Text_IO.Put_Line ("");
+         Ada.Text_IO.Put ("Head: ");
+         Ada.Text_IO.Put (Integer'Image (Head) & ", Tail: ");
+         Ada.Text_IO.Put (Integer'Image (Tail) & " ");
          Data (Tail) := Item;
          Ada.Text_IO.Put_Line ("    Item Succesfuly added to the queue");
 
       else
-         Ada.Text_IO.Put_Line ("Overflow: no space");
+         Ada.Text_IO.Put_Line ("Overflow: idk what, but smth happened");
       end if;
       Print_Queue;
    end Enqueue;
@@ -34,7 +42,11 @@ package body Queue is
          Ada.Text_IO.Put_Line ("Underflow: nothing to delete.");
       else
          Data (head) := 0; --popping dude away
-         Head := Head + 1;
+         if Head < Capacity then
+            Head := Head + 1;
+         else
+            Head := 0; --circular queue
+         end if;
          Ada.Text_IO.Put_Line ("    Dequeued!");
 
       end if;
@@ -49,7 +61,7 @@ package body Queue is
    function Is_Full return Boolean is
    begin
       --  return Tail = Capacity;
-      return Tail = Capacity;
+      return ((Tail mod Capacity) + 1) = Head;
    end Is_Full;
 
    procedure Print_Queue is
@@ -61,6 +73,12 @@ package body Queue is
          if (head <= tail and (I <= head or I > tail)) --usual queue
          then
             Ada.Text_IO.Put ("- ");
+         elsif (head > tail and (I >= head or I < tail)) -- circular queue
+         then
+            Ada.Text_IO.Put (Integer'Image (Data (I)) & " ");
+         elsif (head > tail) and (I < head or I > tail) then
+            Ada.Text_IO.Put (Integer'Image (Data (I)) & " ");
+
          else
             Ada.Text_IO.Put (Integer'Image (Data (I)) & " ");
          end if;

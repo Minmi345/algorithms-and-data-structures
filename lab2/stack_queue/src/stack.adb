@@ -44,9 +44,6 @@ package body Stack is
 
     procedure Print_Stack is
     begin
-        --if Is_Empty then
-        --    Ada.Text_IO.Put_Line ("    Stack is empty.");
-        --else
             Ada.Text_IO.Put ("    Current Stack: [");
             for I in 1 .. Capacity loop
                 if I > Top then
@@ -58,7 +55,6 @@ package body Stack is
 
             end loop;
             Ada.Text_IO.Put_Line ("]");
---        end if;
     end Print_Stack;
 
 end Stack;
