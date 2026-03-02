@@ -1,6 +1,7 @@
+generic
 package Stack is
    procedure Push (Item : Integer);
-   procedure Pop;
+   function Pop return Integer;
    function Is_Empty return Boolean;
    function Is_Full return Boolean;
    procedure Print_Stack;

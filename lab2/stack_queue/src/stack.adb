@@ -22,24 +22,24 @@ package body Stack is
         else
             Ada.Text_IO.Put_Line ("Overflow: Stack is full; nothing is added");
         end if;
-        Print_Stack;
+       -- Print_Stack;
 
     end Push;
 
-    procedure Pop is
+    function Pop return Integer is --(Item :out Integer) is
+      Item: Integer;
     begin
         Ada.Text_IO.Put_Line ("Popping last element...");
 
         if Is_Empty then
             Ada.Text_IO.Put_Line ("Underflow: Stack is empty.");
-        -- Item :=    -1; --"dummy" value
+        Item :=    -1; --"dummy" value
 
         else
-            --Item := Data (Top);
+            Item := Data (Top);
             Top := Top - 1;
         end if;
-        Print_Stack;
-
+        return Item;
     end Pop;
 
     procedure Print_Stack is

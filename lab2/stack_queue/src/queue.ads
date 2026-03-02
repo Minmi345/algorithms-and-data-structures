@@ -1,6 +1,7 @@
+generic
 package Queue is
    procedure Enqueue (Item : Integer);
-   procedure Dequeue;
+   function Dequeue return Integer;
    function Is_Empty return Boolean;
    function Is_Full return Boolean;
    procedure Print_Queue;

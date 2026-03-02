@@ -18,10 +18,11 @@ package body Queue is
       else
          Ada.Text_IO.Put_Line ("Overflow: no space");
       end if;
-      Print_Queue;
+      --  Print_Queue;
    end Enqueue;
 
-   procedure Dequeue is
+   function Dequeue return Integer is
+   Temp: Integer;
    begin
       Ada.Text_IO.Put_Line ("    Dequeueing last element...");
 
@@ -32,13 +33,16 @@ package body Queue is
 
       if Is_Empty then
          Ada.Text_IO.Put_Line ("Underflow: nothing to delete.");
+         Temp := -1;
       else
-         Data (head) := 0; --popping dude away
+         Temp := Data (head);
+         --Data (head) := 0; --popping dude away
          Head := Head + 1;
          Ada.Text_IO.Put_Line ("    Dequeued!");
 
       end if;
-      Print_Queue;
+      --  Print_Queue;
+      return Temp;
    end Dequeue;
 
    function Is_Empty return Boolean is

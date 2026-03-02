@@ -1,4 +1,4 @@
-package queue_from_two_stacks is
+package queue_from_stack is
    procedure Enqueue (Item : Integer);
    procedure Dequeue;
-end queue_from_two_stacks;
+end queue_from_stack;
