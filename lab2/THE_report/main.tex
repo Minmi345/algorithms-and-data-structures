@@ -1,0 +1,184 @@
+\documentclass{article}
+\title{
+    \LARGE Seminar Report 2 \\ Algorithms and Data Structures\\[0.2em]
+}
+\author{Varvara Aladyina}
+\date{February 2026}
+
+\usepackage{graphicx}
+\graphicspath{{images/}}
+
+\usepackage{siunitx}
+
+% To properly align numbers on the decimal
+\sisetup{round-mode=figures, round-precision=4}
+
+\usepackage{booktabs}
+\usepackage{array} % Package to define new column types
+\usepackage{pgfplotstable}
+\usepackage{filecontents}
+\usepackage{tikz}
+\pgfplotsset{compat=1.18}
+\usepackage[margin=1in]{geometry}
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[style=ieee]{biblatex}
+\addbibresource{references/references.bib}
+\usepackage{csquotes}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{booktabs} % For better lines in tables
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    filecolor=magenta,
+    urlcolor=blue,
+}
+\usepackage{listings}
+\usepackage{multirow, makecell}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usepackage{caption}
+\usepackage{calculator}
+\usepackage{calculus}
+\usepackage{adjustbox}
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    left=30mm,
+    right=30mm,
+    top=25mm,
+    bottom=30mm,
+    headheight={90pt},
+}
+\usepackage[shortlabels]{enumitem}
+
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{booktabs}
+
+\addto\captionsenglish{\renewcommand{\listfigurename}{Plots}}
+\addto\captionsenglish{\renewcommand{\listtablename}{Tables}}
+
+\begin{document}
+\begin{figure}[ht!]
+    \minipage{0.76\textwidth}
+    \includegraphics[width=7cm]{images/hkr.png}
+    \label{title}
+    \endminipage
+    \minipage{0.32\textwidth}
+    \endminipage
+\end{figure}
+
+\vspace{0.8cm}
+\large
+
+\textbf{{\let\newpage\relax\maketitle}}
+
+\begin{center}
+    \vfill
+    \small{Kristianstad University | SE-291 88 Kristianstad | +46 44 250 30 00 | www.hkr.se}
+\end{center}
+
+\thispagestyle{empty}
+
+\newpage
+
+\makeatletter
+\renewcommand{\abstractname}{\vspace{-\baselineskip}}
+\begin{abstract}
+    \large
+    \noindent\textbf{Title}\\
+    Seminar Report 2 Algorithms and Data Structures\\[1em]
+    \textbf{Programme}\\
+    Software Development\\[1em]
+    \textbf{Author}\\
+    Varvara Aladyina\\[1em]
+    \textbf{Abstract}\\
+     This report looks through stack and queues and how to implement one using other. It looks through basic implementation of linked list; viewing Josephus problem;\\[1em]
+    \textbf{Keywords}\\
+    Josephus problem, Iterator, Ada, Linked list, Stack, Queue \\[1em]
+    
+\end{abstract}
+\makeatother
+
+\newpage
+
+\tableofcontents
+\thispagestyle{empty}
+
+\newpage
+\section{Introduction}
+This report goes through three tasks.
+First task was about implementing stack with queue and vice versa.
+Second task was about implementing linked list.
+Third task was about solving Josephus problem and comparing quickness with vector and linked list with/without iterator. The main goal is to understand how implementation style affects speed of the algorithms.
+
+\newpage
+
+The following questions will be asked:
+\begin{itemize}
+    \item how
+    \item lo
+\end{itemize}
+
+\section{Methodology}
+The report based both on analytical and practical methods.
+
+\subsection{Analytical methods}
+Before assignment, lectures' review was made on sorting algorithms, their various implementations and time complexities. 
+
+\subsection{Practical methods}
+The following tools were used to generate objective quality metrics:
+\begin{itemize}
+    \item Algorithm code (iterative and recursive versions).
+    \item Measuring function of time.
+    \item Linux (Debian) computer for testing.
+\end{itemize}
+Implemented algorithms were completely written by Ada(UNFORTUNATELY). It was chosen because of the wish to learn a new language. Measuring time of algorithms being calculated was done on linux computer with 8 GB RAM on one core(Intel i5-7400) only.
+To run sorting algorithms, same unsorted data was used from text file that was provided from the teacher that had one million of numbers with range from 0 to 99. Algorithms were tested with different array sizes, such as 1.000, 2.500, 5.000, 7.500, 10.000,  25.000, 50.000, 75.000, 100.000, 250.000, 500.000, 750.000,  1.000.000. Those values were slices from original array. Code was ran 20 times to get the measurements. 
+
+\section{Results}
+
+\subsubsection{Sorting algorithms}
+
+Folowing
+
+\newpage
+
+\subsection{Binary search}
+The average execution time for binary search (in nanoseconds) was calculated from 70 runs per input size. The target value was guaranteed to exist in the sorted array for each test. Sorted array was created by iteration that went from 1 up to 2.048.000.
+
+\newpage
+
+\section{Discussion}
+\subsection{Sorting algorithms}
+\subsubsection{Insert sort}
+From the figure 1 it is seen clearly that both insertion sort implementations take way more time than any of the quick sorts.This matches the theoretical expectation: insertion sort is $O(n^2)$, while quick sort is $O(n \log n)$ on average.
+
+The recursive insertion sort was slower than the iterative one, probably because insertion sort is naturally iterative, and recursion adds extra function call overhead without any benefit.
+
+\subsubsection{Quick sort}
+On the figure 2 it is seen that iterative implementations are extremelly fast, often completing in less than 0.05 ms even for one million elements, meanwhile recursive implementation takes way more time. Among iterative versions, first pivot was often the fastest, while median pivot showed slightly more variability. For recursive implementations, random pivot with recursive implementation tended to be the most consistent, probably because of the average value. The median pivot with iterative implementation was sometimes slower than expected, which might be due to the extra computation needed to find the median.
+
+\section{Summary}
+This practical investigation confirmed several key points:
+\begin{itemize}
+\item Quick sort is dramatically faster than insertion sort for large datasets.
+\item Iterative sorting algorithms tend to be quicker their recursive counterparts due to lower overhead.
+\item The observed growth rates for insertion sort ($O(n^2)$), quick sort ($O(n \log n)$), and binary search ($O(\log n)$) align well with theoretical predictions.
+\item Even within quick sort, pivot selection and iterative/recursive implementation cause measurable time differences.
+\end{itemize}
+
+%\section{Bibliography}
+%\printbibliography[heading=none]
+
+\end{document}
+
+%https://coderscratchpad.com/rust-program-to-implement-binary-search/
+%https://www.geeksforgeeks.org/dsa/iterative-quick-sort/
+%https://www.geeksforgeeks.org/dsa/binary-search/
+%
