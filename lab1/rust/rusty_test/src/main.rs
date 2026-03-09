@@ -29,7 +29,8 @@ fn main() {
     output = output + &Utc::now().to_string() + "\n";
     output.push_str(&" ".repeat(16));
 
-    let length = [1000, 2000, 3000, 500, 600];
+    /////
+    let length = [10000];
 
     let header = length
         .iter() // Create an iterator over the array
@@ -69,12 +70,12 @@ fn main() {
         let _ = match algo {
             Algorithm::InsertIterative => insert_iterative(&mut unsorted_vec[0..len].to_vec()),
             Algorithm::InsertRecursive => insert_recursive(&mut unsorted_vec[0..len].to_vec(), 0),
-            Algorithm::QuickIterMed =>    quicksort_recursive(&mut unsorted_vec[0..len].to_vec(), 0, 100, PivotFunc::Median),
-            Algorithm::QuickIterRand=>    quicksort_recursive(&mut unsorted_vec[0..len].to_vec(), 0, 100, PivotFunc::Random),
-            Algorithm::QuickIterFirst=>   quicksort_recursive(&mut unsorted_vec[0..len].to_vec(), 0, 100, PivotFunc::First),
-            Algorithm::QuickRecMed=>      quicksort_iterative(&mut unsorted_vec[0..len].to_vec(), PivotFunc::Median),
-            Algorithm::QuickRecRand=>     quicksort_iterative(&mut unsorted_vec[0..len].to_vec(), PivotFunc::Random),
-            Algorithm::QuickRecFirst=>    quicksort_iterative(&mut unsorted_vec[0..len].to_vec(), PivotFunc::First)
+            Algorithm::QuickRecMed =>    quicksort_recursive(&mut unsorted_vec[0..len].to_vec(), 0, 100, PivotFunc::Median),
+            Algorithm::QuickRecRand=>    quicksort_recursive(&mut unsorted_vec[0..len].to_vec(), 0, 100, PivotFunc::Random),
+            Algorithm::QuickRecFirst=>   quicksort_recursive(&mut unsorted_vec[0..len].to_vec(), 0, 100, PivotFunc::First),
+            Algorithm::QuickIterMed=>      quicksort_iterative(&mut unsorted_vec[0..len].to_vec(), PivotFunc::Median),
+            Algorithm::QuickIterRand=>     quicksort_iterative(&mut unsorted_vec[0..len].to_vec(), PivotFunc::Random),
+            Algorithm::QuickIterFirst=>    quicksort_iterative(&mut unsorted_vec[0..len].to_vec(), PivotFunc::First)
         };
 
 

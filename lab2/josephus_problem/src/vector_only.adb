@@ -30,7 +30,7 @@ package body vector_only is
       --instantiate the vector with people
       for I in 1 .. n loop
          list.append (i);
-         ada.Text_IO.Put (Integer'Image (i) & ", ");
+         -- ada.Text_IO.Put (Integer'Image (i) & ", ");
       end loop;
       ada.Text_IO.Put_Line ("");
 
@@ -38,7 +38,7 @@ package body vector_only is
          -- magic -1 and +1 cuz it's ada
          index := (index + m - 1) mod Integer (list.Length) + 1;
          --  if index = 0 then index := 1; end if;
-         Ada.Text_IO.Put_Line ("Eliminating: " & Integer'Image (list (index)));
+ --        Ada.Text_IO.Put_Line ("Eliminating: " & Integer'Image (list (index)));
          list.Delete (Index);
       end loop;
       Ada.Text_IO.Put_Line ("Winner: " & Integer'Image (list (1)));

@@ -152,3 +152,27 @@ QuickRandom(rec)        38020       62617      185566       33002       16428
 QuickFirst(rec)         51870      139792      254963       45088       56612
 
 
+2026-02-09 13:09:19.397291544 UTC
+                       10000
+InsertSort(iter)   2198595669
+InsertSort(rec)    2252420763
+QuickMedian(iter)       43524
+QuickRandom(iter)      203874
+QuickFirst(iter)        38034
+QuickMedian(rec)      1088152
+QuickRandom(rec)       973186
+QuickFirst(rec)       1705710
+
+
+2026-02-09 13:10:03.048790742 UTC
+                       10000
+InsertSort(iter)   2173359630
+InsertSort(rec)    2188977592
+QuickMedian(iter)     1138319
+QuickRandom(iter)      948765
+QuickFirst(iter)       890778
+QuickMedian(rec)        27675
+QuickRandom(rec)        39569
+QuickFirst(rec)         29026
+
+

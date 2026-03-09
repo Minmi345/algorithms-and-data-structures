@@ -1,1 +1,1 @@
-/home/milly/projects/University/algorithms/lab3/heap/target/debug/heap: /home/milly/projects/University/algorithms/lab3/heap/src/heap.rs /home/milly/projects/University/algorithms/lab3/heap/src/main.rs
+/home/milly/projects/University/algorithms/lab3/heap/target/debug/heap: /home/milly/projects/University/algorithms/lab3/heap/src/file_manipulations.rs /home/milly/projects/University/algorithms/lab3/heap/src/heap.rs /home/milly/projects/University/algorithms/lab3/heap/src/main.rs

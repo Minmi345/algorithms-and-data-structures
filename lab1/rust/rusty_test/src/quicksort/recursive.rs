@@ -7,7 +7,6 @@ pub fn quicksort_rec<T: PartialOrd + std::fmt::Debug>(
     pivot_func: PivotFunc
 ) {
     // Handling small arrays
-    // Just btw did you know that you pass part of an array: https://doc.rust-lang.org/rust-by-example/primitives/array.html
     if end.saturating_sub(start) + 1 <= 1 {
         return;
     }

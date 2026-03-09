@@ -17,6 +17,7 @@ package body vector_iterator is
 
       --ITERATOR!!!
       iterator : Cursor;
+      index: Extended_Index;
    begin
       ada.Text_IO.Put_Line
         ("START OF THE VECTOR WITH ITERATOORRR (m:"
@@ -29,12 +30,13 @@ package body vector_iterator is
          ada.Text_IO.Put_Line ("There is only 1 person, so... person 1 wins!");
          return;
       end if;
+      
       --instantiate the vector with people
       for I in 1 .. n loop
          list.append (i);
-         ada.Text_IO.Put (Integer'Image (i) & ", ");
+        -- ada.Text_IO.Put (Integer'Image (i) & ", ");
       end loop;
-      ada.Text_IO.Put_Line ("");
+      --ada.Text_IO.Put_Line ("");
 
       iterator := list.First;
 
@@ -43,40 +45,27 @@ package body vector_iterator is
          --we move iterator only when m>0
          for Step in 1 .. m loop
 
+            iterator := Next (iterator);
+
             if not Has_Element (iterator) then
                iterator := list.First;
             end if;
 
-            iterator := Next (iterator);
-            Ada.Text_IO.Put (Integer'Image(Element(Iterator)) & " ");
+ --           Ada.Text_IO.Put (Integer'Image (Element (Iterator)) & " ");
          end loop;
-      
-      ada.Text_IO.Put_Line ("");
-      for I of list loop
-         ada.Text_IO.Put (Integer'Image (I) & ", ");
+
+         -- print whole list
+         --  ada.Text_IO.Put_Line ("");
+         --  for I of list loop
+         --     ada.Text_IO.Put (Integer'Image (I) & ", ");
+         --  end loop;
+         --  ada.Text_IO.Put_Line ("");
+
+         index := To_Index (iterator);
+         Delete (Container => list, Position => iterator);
+         iterator := To_Cursor (list, index);
       end loop;
-      ada.Text_IO.Put_Line ("");
 
-         declare
-            Victim       : Cursor := iterator;
-            Next_Starter : Cursor := Next(Victim);
-         begin
-
-
-         Ada.Text_IO.Put_Line
-           ("Eliminating: " & Integer'Image (Element (Victim)));
-         list.Delete (Victim);
-         if Has_Element(Next_Starter) then
-               iterator := Next_Starter;
-            else
-               iterator := list.First;
-            end if;
-         end;
-
-         if not Has_Element (iterator) then
-            iterator := list.First;
-         end if;
-      end loop;
       Ada.Text_IO.Put_Line ("Winner: " & Integer'Image (list (1)));
 
       null;
